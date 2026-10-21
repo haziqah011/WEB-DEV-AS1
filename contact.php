@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +28,6 @@
 
     <main class="contact-page">
 
-        <!-- CONTACT HERO -->
         <section class="contact-hero">
 
             <span class="section-label">

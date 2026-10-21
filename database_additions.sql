@@ -1,5 +1,4 @@
 -- PawHome: extra tables for Admin + User features
--- Run AFTER importing your original "database" file.
 USE pet_adoption;
 
 DROP TABLE IF EXISTS reviews;

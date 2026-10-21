@@ -1,5 +1,5 @@
 <?php
-// admin_reviews.php - VIEW and DELETE user reviews/comments
+//VIEW and DELETE user reviews/comments
 require_once "admin_auth.php";
 
 $msg = "";

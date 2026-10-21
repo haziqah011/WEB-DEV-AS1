@@ -1,5 +1,5 @@
 <?php
-// admin_pet_form.php - CREATE a new pet or UPDATE an existing one
+//CREATE a new pet or UPDATE an existing one
 require_once "admin_auth.php";
 
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
@@ -9,7 +9,6 @@ $pet = [
     'description' => '', 'status' => 'Available'
 ];
 
-// Editing? load the existing pet
 if ($id) {
     $stmt = $pdo->prepare("SELECT * FROM pets WHERE id = ?");
     $stmt->execute([$id]);

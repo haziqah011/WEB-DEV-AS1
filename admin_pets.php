@@ -1,5 +1,5 @@
 <?php
-// admin_pets.php - VIEW all pets + DELETE a pet
+//VIEW all pets + DELETE a pet
 require_once "admin_auth.php";
 
 $msg = "";

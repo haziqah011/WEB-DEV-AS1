@@ -1,5 +1,5 @@
 <?php
-// admin.php - administrator login page
+//Administrator login page
 require_once "db.php";
 
 // Already logged in? Go straight to dashboard.

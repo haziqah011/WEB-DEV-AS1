@@ -12,7 +12,7 @@ if (!$pet) {
     http_response_code(404);
 }
 
-// Other pets of the same type (shown at the bottom)
+// Other pets of the same type
 $similar = [];
 if ($pet) {
     $s = $pdo->prepare('SELECT id, name, age, image, status FROM pets WHERE type = ? AND id <> ? ORDER BY (status = \'Available\') DESC, name LIMIT 3');
