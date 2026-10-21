@@ -1,0 +1,74 @@
+-- PawHome database
+-- Import this in phpMyAdmin (Import tab) or run it in the MySQL console.
+
+CREATE DATABASE IF NOT EXISTS pet_adoption;
+USE pet_adoption;
+
+DROP TABLE IF EXISTS applications;
+DROP TABLE IF EXISTS pets;
+
+-- PETS TABLE
+CREATE TABLE pets (
+    id          INT AUTO_INCREMENT PRIMARY KEY,
+    name        VARCHAR(50)  NOT NULL,
+    type        VARCHAR(20)  NOT NULL,
+    breed       VARCHAR(50)  NOT NULL,
+    age         VARCHAR(20)  NOT NULL,
+    gender      VARCHAR(10)  NOT NULL,
+    health      VARCHAR(50)  NOT NULL,
+    image       VARCHAR(100) NOT NULL,
+    description TEXT         NOT NULL,
+    status      VARCHAR(20)  NOT NULL DEFAULT 'Available'
+);
+
+-- ADOPTION APPLICATIONS TABLE (saves form.php submissions)
+CREATE TABLE applications (
+    id          INT AUTO_INCREMENT PRIMARY KEY,
+    pet_id      INT          NOT NULL,
+    fullname    VARCHAR(100) NOT NULL,
+    email       VARCHAR(100) NOT NULL,
+    phone       VARCHAR(20)  NOT NULL,
+    address     TEXT         NOT NULL,
+    housing     VARCHAR(20)  NOT NULL,
+    experience  VARCHAR(5)   NOT NULL,
+    reason      TEXT         NOT NULL,
+    status      VARCHAR(20)  NOT NULL DEFAULT 'Pending',
+    created_at  TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (pet_id) REFERENCES pets(id) ON DELETE CASCADE
+);
+
+-- 15 PETS
+INSERT INTO pets (name, type, breed, age, gender, health, image, description) VALUES
+('Oreo',    'Cat',    'Domestic Shorthair', '2 Years Old',  'Female', 'Vaccinated',             'petimages/Oreo.jpg',    'Oreo is a friendly and playful cat who loves spending time with people.'),
+('Mallow',  'Cat',    'Domestic Shorthair', '1 Year Old',   'Female', 'Vaccinated',             'petimages/Mallow.jpg',  'Mallow is a gentle and affectionate cat. She enjoys relaxing in cozy places and loves being around people.'),
+('Max',     'Dog',    'Beagle',             '3 Years Old',  'Male',   'Vaccinated',             'petimages/Max.jpg',     'Max is an energetic and curious dog. He enjoys playing, exploring, and spending time with his family.'),
+('Luna',    'Cat',    'Persian',            '3 Years Old',  'Female', 'Vaccinated, Spayed',     'petimages/Luna.jpg',    'Luna is calm and elegant. She loves being brushed and napping by the window on sunny days.'),
+('Milo',    'Cat',    'Siamese',            '1 Year Old',   'Male',   'Vaccinated',             'petimages/Milo.jpg',    'Milo is chatty and curious. He will follow you around the house and tell you all about his day.'),
+('Bella',   'Dog',    'Golden Retriever',   '2 Years Old',  'Female', 'Vaccinated, Spayed',     'petimages/Bella.jpg',   'Bella is a sweet and loyal dog who gets along well with kids and other pets.'),
+('Rocky',   'Dog',    'German Shepherd',    '4 Years Old',  'Male',   'Vaccinated, Neutered',   'petimages/Rocky.jpg',   'Rocky is smart and protective. He is well trained and would do best with an experienced owner.'),
+('Kiki',    'Cat',    'Bengal',             '8 Months Old', 'Female', 'Vaccinated',             'petimages/Kiki.jpg',    'Kiki is full of energy and loves chasing toys. She is perfect for an active household.'),
+('Coco',    'Dog',    'Shih Tzu',           '5 Years Old',  'Female', 'Vaccinated, Spayed',     'petimages/Coco.jpg',    'Coco is a gentle lap dog who enjoys cuddles and short walks around the neighbourhood.'),
+('Simba',   'Cat',    'Maine Coon',         '2 Years Old',  'Male',   'Vaccinated, Neutered',   'petimages/Simba.jpg',   'Simba is a big fluffy gentle giant. He is relaxed, friendly and loves attention.'),
+('Buddy',   'Dog',    'Labrador Retriever', '1 Year Old',   'Male',   'Vaccinated',             'petimages/Buddy.jpg',   'Buddy is playful and eager to please. He loves fetch, swimming and making new friends.'),
+('Nala',    'Cat',    'Ragdoll',            '4 Years Old',  'Female', 'Vaccinated, Spayed',     'petimages/Nala.jpg',    'Nala is soft-natured and loves being held. She is a great match for a quiet home.'),
+('Charlie', 'Dog',    'Pomeranian',         '2 Years Old',  'Male',   'Vaccinated, Neutered',   'petimages/Charlie.jpg', 'Charlie is small but full of personality. He is alert, cheerful and loves to be the centre of attention.'),
+('Snowy',   'Rabbit', 'Holland Lop',        '1 Year Old',   'Female', 'Healthy',                'petimages/Snowy.jpg',   'Snowy is a gentle bunny with floppy ears. She enjoys fresh veggies and hopping around in a safe space.'),
+('Tiger',   'Cat',    'Domestic Shorthair', '6 Years Old',  'Male',   'Vaccinated, Neutered',   'petimages/Tiger.jpg',   'Tiger is an easy-going senior boy who just wants a warm spot and a kind family to call his own.');
+
+-- 15 SAMPLE ADOPTION APPLICATIONS
+INSERT INTO applications (pet_id, fullname, email, phone, address, housing, experience, reason, status) VALUES
+(1,  'Nur Aisyah Binti Ahmad',    'aisyah.ahmad@gmail.com',   '8812345', 'Kg Kiulap, Bandar Seri Begawan',  'House',     'Yes', 'I have always loved cats and Oreo looks like the perfect companion.',          'Approved'),
+(2,  'Muhammad Hafiz Bin Osman',  'hafiz.osman@gmail.com',    '8823456', 'Kg Rimba, Gadong',                'Apartment', 'No',  'Mallow seems calm and suitable for apartment living.',                        'Pending'),
+(3,  'Siti Nurul Huda',           'nurul.huda@hotmail.com',   '7134567', 'Kg Mentiri, Brunei-Muara',        'House',     'Yes', 'We have a big yard and Max would love running around.',                       'Approved'),
+(4,  'Ahmad Faiz Bin Yusof',      'faiz.yusof@gmail.com',     '8845678', 'Kg Sengkurong, Brunei-Muara',     'House',     'Yes', 'My family wants a gentle cat and Luna fits perfectly.',                       'Pending'),
+(5,  'Dayang Siti Mariam',        'mariam.dsm@yahoo.com',     '7156789', 'Kg Lambak Kanan, Berakas',        'Apartment', 'No',  'Milo looks playful and I work from home so I can give him attention.',        'Pending'),
+(6,  'Lim Wei Jie',               'weijie.lim@gmail.com',     '8867890', 'Jalan Tutong, Bandar Seri Begawan','House',    'Yes', 'Bella would be a great friend for my two kids.',                              'Approved'),
+(7,  'Awang Khairul Anwar',       'khairul.anwar@gmail.com',  '8878901', 'Kg Tungku, Brunei-Muara',         'House',     'Yes', 'I have trained dogs before and Rocky needs an experienced owner.',            'Pending'),
+(8,  'Nurul Izzati Binti Hamid',  'izzati.hamid@gmail.com',   '7189012', 'Kg Jerudong, Brunei-Muara',       'House',     'No',  'Kiki is so energetic and my younger siblings would love to play with her.',   'Rejected'),
+(9,  'Pg Hjh Norhayati',          'norhayati.pg@gmail.com',   '8890123', 'Kg Kilanas, Brunei-Muara',        'House',     'Yes', 'I am retired and Coco would keep me company at home.',                        'Approved'),
+(10, 'Chong Mei Ling',            'meiling.chong@gmail.com',  '7101234', 'Seria, Belait',                   'House',     'Yes', 'I have owned Maine Coons before and Simba looks lovely.',                     'Pending'),
+(11, 'Mohd Amirul Bin Rahman',    'amirul.rahman@gmail.com',  '8812340', 'Kuala Belait, Belait',            'House',     'No',  'Buddy is the perfect dog for my active lifestyle and morning jogs.',          'Pending'),
+(12, 'Siti Aminah Binti Jaafar',  'aminah.jaafar@gmail.com',  '7123401', 'Tutong Town, Tutong',             'Apartment', 'Yes', 'Nala seems quiet and would fit well in my small home.',                       'Approved'),
+(13, 'Hj Zulkifli Bin Mahmud',    'zulkifli.m@gmail.com',     '8834012', 'Kg Telisai, Tutong',              'House',     'Yes', 'My daughter has always wanted a small dog like Charlie.',                     'Pending'),
+(14, 'Nadia Binti Abdullah',      'nadia.abdullah@gmail.com', '7140123', 'Kg Beribi, Gadong',               'Apartment', 'No',  'I would love to give Snowy a safe and caring home.',                          'Pending'),
+(15, 'Ak Hj Ismail Bin Ak Ali',   'ismail.ali@gmail.com',     '8851234', 'Bangar, Temburong',               'House',     'Yes', 'Tiger deserves a peaceful home to spend his senior years.',                   'Approved');
