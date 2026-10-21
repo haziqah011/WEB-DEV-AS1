@@ -13,6 +13,9 @@ CREATE TABLE admins (
     created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+INSERT INTO admins (username, password_hash) VALUES
+('admin', '$2y$10$IONUKipbPt.xaHx1R9EDmOMRP4DyhP7OVsdYS5KTCJJoCdkGSQaJm');
+
 -- USER COMMENTS / REVIEWS ON A PET
 CREATE TABLE reviews (
     id          INT AUTO_INCREMENT PRIMARY KEY,
