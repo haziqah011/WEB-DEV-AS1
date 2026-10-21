@@ -1,0 +1,1234 @@
+/* ===================================
+   COLOUR PALETTE
+=================================== */
+
+:root {
+    --tan: #dab17e;
+    --cream: #efdeca;
+    --dark: #212615;
+    --brown: #976133;
+    --olive: #636a2f;
+    --white: #ffffff;
+}
+
+/* ===================================
+   GENERAL STYLING
+=================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', Arial, sans-serif;
+    background-color: var(--cream);
+    color: var(--dark);
+}
+
+a {
+    transition: 0.3s;
+}
+
+/* ===================================
+   NAVIGATION BAR
+=================================== */
+
+header {
+    background-color: var(--white);
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+header h1 {
+    color: var(--brown);
+    font-size: 28px;
+}
+
+nav {
+    display: flex;
+    gap: 15px;
+}
+
+nav a {
+    text-decoration: none;
+    background-color: var(--tan);
+    color: var(--dark);
+    padding: 12px 22px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+nav a:hover,
+nav a.active {
+    background-color: var(--olive);
+    color: var(--white);
+}
+
+nav a:hover {
+    transform: translateY(-2px);
+}
+
+/* ===================================
+   HOMEPAGE
+=================================== */
+
+.home-page {
+    display: block;
+    min-height: auto;
+    padding: 0;
+    text-align: left;
+    background-color: var(--cream);
+}
+
+.home-page h1,
+.home-page h2,
+.home-page h3 {
+    font-family: 'Fraunces', Georgia, serif;
+}
+
+/* HERO SECTION */
+
+.home-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 70px;
+    padding: 85px 10%;
+    min-height: 600px;
+}
+
+.hero-label,
+.section-label {
+    display: inline-block;
+    color: var(--brown);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.hero-content h1 {
+    font-size: clamp(42px, 5vw, 70px);
+    line-height: 1.15;
+    color: var(--dark);
+    margin-bottom: 25px;
+}
+
+.hero-content h1 span {
+    display: block;
+    color: var(--brown);
+}
+
+.hero-content p {
+    font-size: 16px;
+    line-height: 1.9;
+    color: #555844;
+    max-width: 440px;
+    margin-bottom: 30px;
+}
+
+.hero-small-text {
+    margin-top: 25px;
+    font-size: 13px;
+    color: var(--brown);
+}
+
+/* HOMEPAGE BUTTONS */
+
+.home-button {
+    display: inline-block;
+    background-color: var(--olive);
+    color: var(--white);
+    padding: 15px 30px;
+    border-radius: 35px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.home-button:hover {
+    background-color: var(--dark);
+    transform: translateY(-3px);
+}
+
+/* HERO IMAGE */
+
+.hero-image {
+    position: relative;
+    max-width: 440px;
+    margin: auto;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 200px 200px 35px 35px;
+    border: 8px solid var(--white);
+}
+
+.hero-tag {
+    position: absolute;
+    bottom: 30px;
+    left: -25px;
+    background-color: var(--white);
+    padding: 15px 20px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--dark);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+/* ===================================
+   FEATURED PETS SECTION
+=================================== */
+
+.home-featured {
+    background-color: #fffdf9;
+    padding: 90px 10%;
+    text-align: center;
+}
+
+.home-featured h2,
+.home-process h2,
+.home-about h2 {
+    font-size: clamp(30px, 4vw, 43px);
+    color: var(--dark);
+    margin-bottom: 15px;
+}
+
+.section-description {
+    color: #777;
+    font-size: 15px;
+    margin-bottom: 40px;
+}
+
+/* ===================================
+   INFINITE PET CAROUSEL
+=================================== */
+
+.pet-carousel {
+    width: 100%;
+    overflow: hidden;
+    margin: 40px auto;
+}
+
+.pet-track {
+    display: flex;
+    gap: 25px;
+    width: max-content;
+    animation: movePets 25s linear infinite;
+}
+
+/* PET CARDS */
+
+.pet-slide {
+    flex: 0 0 280px;
+    background-color: #636a2f;
+    border: 1px solid #87b35c;
+    border-radius: 20px;
+    overflow: hidden;
+    text-align: left;
+    padding-bottom: 22px;
+    transition: box-shadow 0.3s;
+}
+
+.pet-slide:hover {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.pet-slide img {
+    color: white;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.pet-slide h3 {
+    font-size: 23px;
+    color: white;
+    margin: 18px 20px 8px;
+}
+
+.pet-slide p {
+    font-size: 13px;
+    color: white;
+    margin: 0 20px 18px;
+}
+
+.pet-slide a {
+    display: inline-block;
+    margin: 0 20px;
+    color: var(--olive);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.pet-slide a:hover {
+    color: var(--brown);
+}
+
+/* MOVE PETS TO THE RIGHT */
+
+@keyframes movePets {
+    from {
+        transform: translateX(
+            calc(-50% - 12.5px)
+        );
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* PAUSE WHEN HOVERING */
+
+.pet-carousel:hover .pet-track {
+    animation-play-state: paused;
+}
+
+/* ===================================
+   ADOPTION PROCESS
+=================================== */
+
+.home-process {
+    background-color: var(--cream);
+    padding: 90px 10%;
+    text-align: center;
+}
+
+.home-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    max-width: 1100px;
+    margin: 45px auto 0;
+}
+
+.home-step {
+    background-color: #fffdf9;
+    padding: 35px 25px;
+    border-radius: 22px;
+    text-align: center;
+}
+
+.home-step > span {
+    color: var(--brown);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.step-icon {
+    font-size: 40px;
+    margin: 20px 0;
+}
+
+.home-step h3 {
+    font-size: 22px;
+    color: var(--dark);
+    margin-bottom: 12px;
+}
+
+.home-step p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #666;
+}
+
+/* ===================================
+   ABOUT US PAGE
+=================================== */
+
+.about-page {
+    background-color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+}
+
+.about-page h1,
+.about-page h2,
+.about-page h3 {
+    font-family: 'Fraunces', Georgia, serif;
+}
+
+/* ABOUT HERO */
+
+.about-hero {
+    text-align: center;
+    padding: 100px 20px;
+    background-color: var(--cream);
+}
+
+.about-hero h1 {
+    font-size: clamp(40px, 5vw, 60px);
+    color: var(--dark);
+    margin-bottom: 20px;
+}
+
+.about-hero p {
+    max-width: 550px;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 1.9;
+    color: #555844;
+}
+
+/* WHO WE ARE - CENTERED */
+
+.about-story {
+    background-color: #fffdf9;
+    padding: 100px 10%;
+    text-align: center;
+}
+
+.about-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.about-content h2 {
+    font-size: clamp(30px, 4vw, 43px);
+    color: var(--dark);
+    margin-bottom: 25px;
+}
+
+.about-content p {
+    font-size: 16px;
+    line-height: 1.9;
+    color: #555844;
+    margin-bottom: 20px;
+}
+
+/* MISSION AND VISION */
+
+.about-values {
+    padding: 90px 10%;
+    text-align: center;
+    background-color: var(--cream);
+}
+
+.about-values h2 {
+    font-size: 40px;
+    color: var(--dark);
+    margin-bottom: 40px;
+}
+
+.about-values-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.about-value-card {
+    background-color: #fffdf9;
+    padding: 45px 35px;
+    border-radius: 25px;
+    text-align: center;
+}
+
+.about-icon {
+    font-size: 40px;
+    color: var(--brown);
+    margin-bottom: 20px;
+}
+
+.about-value-card h3 {
+    font-size: 25px;
+    color: var(--dark);
+    margin-bottom: 15px;
+}
+
+.about-value-card p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #666;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 768px) {
+
+    .about-hero {
+        padding: 70px 20px;
+    }
+
+    .about-story {
+        padding: 65px 7%;
+    }
+
+    .about-values {
+        padding: 65px 7%;
+    }
+
+    .about-values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-values h2 {
+        font-size: 32px;
+    }
+
+    .about-value-card {
+        padding: 35px 25px;
+    }
+}
+
+/* ===================================
+   FOOTER
+=================================== */
+
+.home-footer {
+    background-color: var(--dark);
+    color: var(--white);
+    padding: 45px 20px;
+    text-align: center;
+}
+
+.home-footer h2 {
+    font-size: 26px;
+    margin-bottom: 12px;
+}
+
+.home-footer p {
+    font-size: 14px;
+    color: var(--cream);
+}
+
+.home-footer .copyright {
+    font-size: 12px;
+    margin-top: 25px;
+    opacity: 0.7;
+}
+
+/* ===================================
+   ADOPT A PET PAGE
+=================================== */
+
+.pets-section {
+    padding: 60px 8%;
+    text-align: center;
+    background-color: var(--cream);
+    min-height: 85vh;
+}
+
+.pets-section h2 {
+    font-size: 36px;
+    color: var(--dark);
+    margin-bottom: 15px;
+}
+
+.pets-section > p {
+    font-size: 17px;
+    color: var(--brown);
+    margin-bottom: 40px;
+}
+
+.pets-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.pet-card {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.pet-card:hover {
+    transform: translateY(-5px);
+}
+
+.pet-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.pet-card h3 {
+    color: var(--brown);
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.pet-card p {
+    color: var(--dark);
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+/* VIEW DETAILS BUTTON */
+
+.pet-btn {
+    display: inline-block;
+    background-color: var(--olive);
+    color: var(--white);
+    padding: 12px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.pet-btn:hover {
+    background-color: var(--dark);
+    transform: translateY(-2px);
+}
+
+/* ===================================
+   PET DETAILS PAGE
+=================================== */
+
+.details-section {
+    background-color: var(--cream);
+    min-height: 85vh;
+    padding: 50px 8%;
+}
+
+.back-link {
+    display: inline-block;
+    color: var(--brown);
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.back-link:hover {
+    color: var(--olive);
+}
+
+.details-card {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    background-color: var(--white);
+    padding: 35px;
+    border-radius: 25px;
+    max-width: 1100px;
+    margin: 0 auto;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.details-image {
+    width: 45%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.details-info {
+    flex: 1;
+}
+
+.details-info h2 {
+    color: var(--brown);
+    font-size: 34px;
+    margin-bottom: 25px;
+}
+
+.details-info h3 {
+    color: var(--olive);
+    font-size: 22px;
+    margin-top: 25px;
+    margin-bottom: 12px;
+}
+
+.details-info p {
+    color: var(--dark);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
+
+.details-info .pet-btn {
+    margin-top: 25px;
+}
+
+/* ===================================
+   ADOPTION APPLICATION FORM
+=================================== */
+
+.adoption-section {
+    background-color: var(--cream);
+    min-height: 100vh;
+    padding: 60px 8%;
+    text-align: center;
+}
+
+.adoption-section h2 {
+    font-size: 36px;
+    color: var(--dark);
+    margin-bottom: 15px;
+}
+
+.adoption-section > p {
+    color: var(--brown);
+    font-size: 17px;
+    margin-bottom: 35px;
+}
+
+.adoption-form {
+    max-width: 750px;
+    margin: 0 auto;
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 25px;
+    text-align: left;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.adoption-form h3 {
+    color: var(--olive);
+    font-size: 22px;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--tan);
+    padding-bottom: 10px;
+}
+
+.adoption-form label {
+    display: block;
+    font-weight: bold;
+    color: var(--dark);
+    margin-bottom: 8px;
+}
+
+.adoption-form input:not([type="checkbox"]),
+.adoption-form select,
+.adoption-form textarea {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 20px;
+    border: 1px solid var(--tan);
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: inherit;
+    background-color: #fffdf9;
+}
+
+.adoption-form input:focus,
+.adoption-form select:focus,
+.adoption-form textarea:focus {
+    outline: 2px solid var(--olive);
+    outline-offset: 1px;
+}
+
+/* CHECKBOX */
+
+.agreement {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.agreement input {
+    margin-top: 4px;
+}
+
+.agreement label {
+    font-size: 14px;
+    font-weight: normal;
+}
+
+/* SUBMIT BUTTON */
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    background-color: var(--olive);
+    color: var(--white);
+    border: none;
+    padding: 15px;
+    border-radius: 30px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: var(--dark);
+}
+
+/* OPTIONAL EMBEDDED FORM */
+
+.adoption-container {
+    margin-top: 35px;
+    padding-top: 30px;
+    border-top: 2px solid var(--tan);
+    width: 100%;
+}
+
+.adoption-container h2 {
+    color: var(--brown);
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.adoption-container > p {
+    color: var(--olive);
+    margin-bottom: 25px;
+}
+
+.adoption-container .adoption-form {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+=================================== */
+
+@media (max-width: 900px) {
+
+    .home-hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 65px 7%;
+        gap: 45px;
+    }
+
+    .hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .home-steps,
+    .pets-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-tag {
+        left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .details-card {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .details-image {
+        width: 100%;
+        height: 300px;
+    }
+
+    .details-info h2 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .home-hero {
+        padding: 55px 6%;
+    }
+
+    .hero-image img {
+        height: 340px;
+    }
+
+    .home-steps,
+    .pets-container {
+        grid-template-columns: 1fr;
+    }
+
+    .home-featured,
+    .home-process {
+        padding: 65px 6%;
+    }
+
+    .pet-slide {
+        flex-basis: 230px;
+    }
+
+    .pet-slide img {
+        height: 190px;
+    }
+
+    .pets-section h2,
+    .adoption-section h2 {
+        font-size: 28px;
+    }
+
+    .adoption-form {
+        padding: 22px;
+    }
+}
+
+/* REDUCED MOTION ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .pet-track {
+        animation: none;
+    }
+
+    .pet-carousel {
+        overflow-x: auto;
+    }
+}
+
+
+/* ===================================
+   CONTACT US PAGE
+=================================== */
+
+.contact-page {
+    background-color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* CONTACT HERO */
+
+.contact-hero {
+    text-align: center;
+    padding: 90px 20px 60px;
+}
+
+.contact-hero h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(36px, 5vw, 55px);
+    color: var(--dark);
+    margin-bottom: 20px;
+}
+
+.contact-hero p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555844;
+}
+
+/* CONTACT FORM SECTION */
+
+.contact-section {
+    padding: 0 8% 100px;
+}
+
+.contact-form-container {
+    background-color: #fffdf9;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 45px;
+    border-radius: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.contact-form-container h2 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 30px;
+    color: var(--dark);
+    margin-bottom: 12px;
+}
+
+.contact-form-container > p {
+    color: #777;
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* FORM FIELDS */
+
+.contact-field {
+    margin-bottom: 22px;
+}
+
+.contact-field label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 10px;
+}
+
+.contact-field input,
+.contact-field textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--tan);
+    border-radius: 12px;
+    background-color: var(--white);
+    color: var(--dark);
+    font-family: inherit;
+    font-size: 15px;
+    transition: border-color 0.3s;
+}
+
+.contact-field textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+    outline: none;
+    border-color: var(--olive);
+    box-shadow: 0 0 0 2px rgba(99,106,47,0.12);
+}
+
+/* SEND MESSAGE BUTTON */
+
+.contact-submit {
+    display: block;
+    width: 100%;
+    background-color: var(--olive);
+    color: var(--white);
+    padding: 15px;
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact-submit:hover {
+    background-color: var(--dark);
+    transform: translateY(-2px);
+}
+
+/* FORM NOTE */
+
+.contact-form-container .contact-note {
+    font-size: 12px;
+    color: #888;
+    text-align: center;
+    margin: 18px 0 0;
+}
+
+/* MOBILE RESPONSIVENESS */
+
+@media (max-width: 600px) {
+
+    .contact-hero {
+        padding: 65px 20px 45px;
+    }
+
+    .contact-section {
+        padding: 0 6% 65px;
+    }
+
+    .contact-form-container {
+        padding: 30px 22px;
+    }
+
+    .contact-form-container h2 {
+        font-size: 26px;
+    }
+}
+
+
+/* ===================================
+   PET FILTERS
+=================================== */
+
+.filter-box {
+    background-color: #ffe1bc;
+    padding: 35px 40px;
+    border-radius: 20px;
+    max-width: 1100px;
+    margin: 30px auto 40px;
+    text-align: left;
+}
+
+/* HEADING */
+
+.filter-heading {
+    margin-bottom: 25px;
+}
+
+.filter-heading .section-label {
+    margin-bottom: 10px;
+}
+
+.filter-heading h3 {
+    font-size: 30px;
+    color: var(--dark);
+    margin-bottom: 8px;
+}
+
+.filter-heading p {
+    font-size: 14px;
+    color: #555844;
+}
+
+/* FILTERS IN ONE ROW */
+
+
+/* FILTER OPTIONS - TWO COLUMNS */
+
+.filter-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 25px;
+    row-gap: 22px;
+}
+
+/* FILTER GROUP */
+
+.filter-group {
+    min-width: 0;
+}
+
+
+/* ROUNDED FILTER DROPDOWNS */
+
+.filter-group select,
+.filter-group input {
+    width: 100%;
+    height: 54px;
+    padding: 0 20px;
+
+    background-color: white;
+    color: var(--dark);
+
+    border: 1px solid #e5d7c8;
+    border-radius: 18px;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    transition: all 0.3s ease;
+}
+
+/* SMOOTH HOVER EFFECT */
+
+.filter-group select:hover,
+.filter-group input:hover {
+    border-color: var(--olive);
+}
+
+/* WHEN CLICKED */
+
+.filter-group select:focus,
+.filter-group input:focus {
+    outline: none;
+    border-color: var(--olive);
+    box-shadow: 0 0 0 3px rgba(99, 106, 47, 0.15);
+}
+
+
+/* BUTTONS BELOW FILTERS */
+
+.filter-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+    .filter-options {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+}
+
+/* BUTTONS BELOW FILTERS */
+
+.filter-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-top: 22px;
+}
+
+#clearFilters {
+    background: none;
+    border: none;
+    color: var(--brown);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px 0;
+}
+
+#clearFilters:hover {
+    color: var(--olive);
+}
+
+#searchPets {
+    background-color: var(--olive);
+    color: white;
+    border: none;
+    padding: 13px 30px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#searchPets:hover {
+    background-color: var(--dark);
+    transform: translateY(-2px);
+}
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+
+    .filter-box {
+        padding: 25px 20px;
+    }
+
+    .filter-heading h3 {
+        font-size: 25px;
+    }
+
+    .filter-options {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .filter-actions {
+        margin-top: 25px;
+    }
+}
+
+
+/* Hide pets that do not match the filters */
+
+.pet-card[hidden],
+#noPetsMessage[hidden] {
+    display: none !important;
+}
