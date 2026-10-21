@@ -157,18 +157,35 @@ $featured = $pdo->query("SELECT id, name, breed, age, image FROM pets WHERE stat
 
 
 <!-- FOOTER -->
-<footer class="home-footer" id="contact">
 
-    <h2>PawHome 🐾</h2>
+<footer class="home-footer">
+    <div class="footer-container">
 
-    <p>
-        Helping little paws find forever homes.
-    </p>
+        <!-- PawHome -->
+        <div class="footer-brand">
+            <h2>PawHome 🐾</h2>
+            <p>Helping little paws find forever homes.</p>
+        </div>
 
-    <p class="copyright">
-        © 2026 PawHome. All rights reserved.
-    </p>
+        <!-- Explore -->
+        <div class="footer-section">
+            <h3>Explore</h3>
+            <a href="index.php">Home</a>
+            <a href="about_us.php">About Us</a>
+            <a href="pets.php">Pet Adoption</a>
+        </div>
 
+        <!-- Get in Touch -->
+        <div class="footer-section">
+            <h3>Get in Touch</h3>
+            <a href="contact.php">Contact Us</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 PawHome. All rights reserved.</p>
+    </div>
 </footer>
 
 </body>
