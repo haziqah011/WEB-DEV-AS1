@@ -36,6 +36,19 @@ function csrf_valid($token): bool {
     return !empty($_SESSION['csrf']) && is_string($token) && hash_equals($_SESSION['csrf'], $token);
 }
 
+// Hidden CSRF input for admin forms
+function csrf_field(): string {
+    return '<input type="hidden" name="csrf" value="' . e(csrf_token()) . '">';
+}
+
+// Stop the request if the CSRF token is missing or wrong (used by admin pages)
+function csrf_check(): void {
+    if (!csrf_valid($_POST['csrf'] ?? null)) {
+        http_response_code(400);
+        exit('Invalid request. Please go back and try again.');
+    }
+}
+
 // Pet photo path, or a simple placeholder if the file is missing
 function pet_image(?string $path): string {
     if ($path && is_file(__DIR__ . '/' . $path)) {
