@@ -1,0 +1,105 @@
+/* admin.css - styles for admin pages + new user features (reviews, alerts, badges)
+   Uses the same colour variables as style.css */
+
+/* ---------- ADMIN LAYOUT ---------- */
+.admin-page { padding: 40px 8%; }
+.admin-page h2 { color: var(--brown); margin-bottom: 20px; }
+.admin-tag {
+    font-size: 12px; background: var(--olive); color: var(--white);
+    padding: 3px 10px; border-radius: 20px; vertical-align: middle;
+}
+.admin-top {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 15px; margin-bottom: 20px;
+}
+.admin-top h2 { margin-bottom: 0; }
+.admin-subtitle { color: var(--olive); margin: 30px 0 12px; }
+.admin-page .back-link { display: inline-block; margin-bottom: 15px; }
+.report-date { margin-bottom: 10px; }
+.report-print { border: none; cursor: pointer; font-family: inherit; font-size: 15px; }
+
+/* ---------- LOGIN ---------- */
+.login-box { max-width: 450px; margin: 30px auto; text-align: center; }
+.login-box p { margin-bottom: 20px; }
+.login-box .adoption-form { padding: 30px; }
+
+/* ---------- STAT CARDS ---------- */
+.stat-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 18px; margin: 20px 0;
+}
+.stat-card {
+    background: var(--white); border-radius: 20px; padding: 22px;
+    text-align: center; font-weight: bold; color: var(--dark);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+.stat-card span { display: block; font-size: 38px; color: var(--olive); }
+
+/* ---------- TABLES ---------- */
+.table-wrap {
+    overflow-x: auto; background: var(--white); border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+.admin-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.admin-table th {
+    background: var(--olive); color: var(--white);
+    text-align: left; padding: 12px 14px;
+}
+.admin-table td { padding: 12px 14px; border-bottom: 1px solid var(--cream); vertical-align: top; }
+.admin-table tr:last-child td { border-bottom: none; }
+.admin-table small { color: #777; }
+.admin-table .reason { max-width: 260px; }
+.thumb { width: 50px; height: 50px; object-fit: cover; border-radius: 10px; }
+
+.actions { white-space: nowrap; }
+.actions form { display: inline-block; margin: 2px 0; }
+.actions select { padding: 6px; border-radius: 8px; border: 1px solid var(--tan); }
+
+/* ---------- BUTTONS ---------- */
+.btn-small {
+    display: inline-block; background: var(--tan); color: var(--dark);
+    border: none; padding: 7px 14px; border-radius: 20px;
+    font-size: 13px; font-weight: bold; cursor: pointer;
+    text-decoration: none; font-family: inherit;
+}
+.btn-small:hover { background: var(--olive); color: var(--white); }
+.btn-danger { background: #c0392b; color: var(--white); }
+.btn-danger:hover { background: #8e281d; }
+.inline-filter select {
+    padding: 10px 16px; border-radius: 20px; border: 1px solid var(--tan); background: var(--white);
+}
+
+/* ---------- ALERTS ---------- */
+.alert { padding: 14px 18px; border-radius: 12px; margin: 0 auto 18px; max-width: 750px; font-weight: bold; }
+.admin-page .alert { max-width: none; }
+.alert-success { background: #e3f1d8; color: #2f5d12; }
+.alert-error   { background: #fbe0dd; color: #8e281d; }
+.success-box { text-align: center; line-height: 1.6; }
+
+/* ---------- STATUS BADGES ---------- */
+.badge {
+    display: inline-block; padding: 4px 12px; border-radius: 20px;
+    font-size: 12px; font-weight: bold; background: var(--tan); color: var(--dark);
+}
+.badge-available, .badge-approved { background: #d4ebc2; color: #2f5d12; }
+.badge-pending                    { background: #fbe9b7; color: #7a5a00; }
+.badge-adopted                    { background: #d9d6f0; color: #3a2f7a; }
+.badge-rejected                   { background: #fbe0dd; color: #8e281d; }
+
+/* ---------- USER REVIEWS ---------- */
+.reviews-box { max-width: 900px; margin: 40px auto 0; }
+.reviews-box h2 { color: var(--brown); margin-bottom: 20px; }
+.reviews-box h3 { color: var(--olive); margin: 30px 0 15px; }
+.review {
+    background: var(--white); border-radius: 18px; padding: 18px 22px;
+    margin-bottom: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+}
+.review-head { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-bottom: 6px; }
+.review-head .stars { color: #e0a100; letter-spacing: 2px; }
+.review-head small { color: #777; margin-left: auto; }
+.reviews-box .adoption-form { max-width: none; }
+
+@media print {
+    header, .report-print, .admin-top a { display: none; }
+    body { background: #fff; }
+}

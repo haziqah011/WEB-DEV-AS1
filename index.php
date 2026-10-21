@@ -61,7 +61,7 @@ $featured = $pdo->query("SELECT id, name, breed, age, image FROM pets WHERE stat
             </a>
 
             <a href="contact.php" class="home-button contact-button">
-                Contact Us
+                Contact Us ☎
             </a>
 
         </div>
