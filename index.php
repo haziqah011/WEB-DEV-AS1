@@ -1,3 +1,8 @@
+<?php
+require 'db.php';
+// Newest pets that are still available
+$featured = $pdo->query("SELECT id, name, breed, age, image FROM pets WHERE status = 'Available' ORDER BY id DESC LIMIT 6")->fetchAll();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,55 +86,22 @@
 
         
 <div class="pet-carousel">
-
     <div class="pet-track">
-
-        <!-- FIRST SET -->
-        <div class="pet-slide">
-            <img src="petimages/Oreo.jpg" alt="Oreo">
-            <h3>Oreo</h3>
-            <p>Domestic Shorthair · 2 Years</p>
-            <a href="pet-details.php?id=1"></a>
-        </div>
-
-        <div class="pet-slide">
-            <img src="petimages/Mallow.jpg" alt="Mallow">
-            <h3>Mallow</h3>
-            <p>Domestic Shorthair · 1 Year</p>
-            <a href="pet-details.php?id=2"></a>
-        </div>
-
-        <div class="pet-slide">
-            <img src="petimages/Max.jpg?v=2" alt="Max">
-            <h3>Max</h3>
-            <p>Labrador Retriever · 3 Years</p>
-            <a href="pet-details.php?id=3"></a>
-        </div>
-
-        <!-- DUPLICATE SET FOR INFINITE LOOP -->
-        <div class="pet-slide" aria-hidden="true">
-            <img src="petimages/Oreo.jpg" alt="">
-            <h3>Oreo</h3>
-            <p>Domestic Shorthair · 2 Years</p>
-            <a href="pet-details.php?id=1" tabindex="-1"></a>
-        </div>
-
-        <div class="pet-slide" aria-hidden="true">
-            <img src="petimages/Mallow.jpg" alt="">
-            <h3>Mallow</h3>
-            <p>Domestic Shorthair · 1 Year</p>
-            <a href="pet-details.php?id=2" tabindex="-1"></a>
-        </div>
-
-        <div class="pet-slide" aria-hidden="true">
-            <img src="petimages/Max.jpg?v=2" alt="">
-            <h3>Max</h3>
-            <p>Labrador Retriever · 3 Years</p>
-            <a href="pet-details.php?id=3" tabindex="-1"></a>
-        </div>
-
+        <?php if ($featured): ?>
+        <?php foreach ([false, true] as $isCopy): /* second pass = duplicate set for the infinite loop */ ?>
+            <?php foreach ($featured as $p): ?>
+            <div class="pet-slide"<?= $isCopy ? ' aria-hidden="true"' : '' ?>>
+                <img src="<?= e(pet_image($p['image'])) ?>" alt="<?= $isCopy ? '' : e($p['name']) ?>">
+                <h3><?= e($p['name']) ?></h3>
+                <p><?= e($p['breed']) ?> · <?= e($p['age']) ?></p>
+                <a class="slide-link" href="pet_details.php?id=<?= (int)$p['id'] ?>"<?= $isCopy ? ' tabindex="-1"' : '' ?>>Meet <?= e($p['name']) ?></a>
+            </div>
+            <?php endforeach; ?>
+        <?php endforeach; ?>
+        <?php else: ?>
+            <p>New pets are coming soon. Please check back later.</p>
+        <?php endif; ?>
     </div>
-
 </div>
 
 

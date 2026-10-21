@@ -1232,3 +1232,59 @@ nav a:hover {
 #noPetsMessage[hidden] {
     display: none !important;
 }
+
+
+/* ===================================
+   USER PAGES: ADDITIONS (categories, search, status badges, form messages)
+=================================== */
+
+/* Categories */
+.category-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 0 auto 10px; max-width: 1100px; }
+.category-chips a { background: var(--white); color: var(--dark); text-decoration: none; padding: 10px 20px; border-radius: 30px; border: 2px solid var(--tan); font-weight: 600; font-size: 14px; }
+.category-chips a:hover { border-color: var(--olive); }
+.category-chips a.active { background: var(--olive); border-color: var(--olive); color: var(--white); }
+
+/* Search + filters */
+.filter-group label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 8px; }
+.filter-wide, .filter-check { grid-column: 1 / -1; }
+.filter-check { display: flex; align-items: center; gap: 10px; }
+.filter-check input { width: 20px; height: 20px; accent-color: var(--olive); }
+#clearFilters { text-decoration: none; }
+.results-count { max-width: 1100px; margin: 0 auto 20px !important; text-align: left; font-size: 15px !important; }
+#noPetsMessage { max-width: 700px; margin: 20px auto; background: var(--white); padding: 25px; border-radius: 15px; color: var(--dark); }
+
+/* Pet cards */
+.pet-image { position: relative; }
+.pet-blurb { color: #555844; font-size: 14px; line-height: 1.5; }
+.status-badge { position: absolute; top: 12px; right: 12px; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; background: #e4e4e4; color: #444; }
+.status-badge.available { background: #dff0d0; color: #2f5a12; }
+.status-badge.adopted   { background: #f3d6d0; color: #7a2a1b; }
+.status-badge.pending   { background: #fbe7b5; color: #7a5600; }
+.status-badge.inline { position: static; display: inline-block; vertical-align: middle; margin-left: 10px; }
+
+/* Home carousel link */
+.pet-slide a.slide-link { color: var(--cream); }
+.pet-slide a.slide-link:hover { color: var(--tan); }
+
+/* Details page */
+.status-note { background: #fff3dc; border-left: 5px solid var(--brown); padding: 14px 16px; border-radius: 10px; margin-top: 20px; }
+.similar-pets { max-width: 1100px; margin: 35px auto 0; }
+.similar-pets h3 { color: var(--brown); margin-bottom: 15px; }
+.similar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 18px; }
+.similar-card { background: var(--white); border-radius: 18px; padding: 12px; text-decoration: none; color: var(--dark); display: flex; flex-direction: column; gap: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.similar-card:hover { transform: translateY(-4px); }
+.similar-card img { width: 100%; height: 140px; object-fit: cover; border-radius: 12px; margin-bottom: 6px; }
+.similar-card span { font-size: 13px; color: var(--brown); }
+
+/* Form messages */
+.form-message { padding: 16px 18px; border-radius: 12px; margin-bottom: 20px; background: #fff3dc; }
+.form-message.error { background: #fbe0dc; color: #7a1812; }
+.form-message.error ul { margin: 8px 0 0 20px; }
+.form-message.success { text-align: center; }
+.form-message.success h3 { border: none; }
+.adoption-form.form-message { padding: 40px; }
+
+@media (max-width: 768px) {
+    .details-card { flex-direction: column; }
+    .details-image { width: 100%; }
+}
