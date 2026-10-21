@@ -72,5 +72,3 @@ INSERT INTO applications (pet_id, fullname, email, phone, address, housing, expe
 (13, 'Hj Zulkifli Bin Mahmud',    'zulkifli.m@gmail.com',     '8834012', 'Kg Telisai, Tutong',              'House',     'Yes', 'My daughter has always wanted a small dog like Charlie.',                     'Pending'),
 (14, 'Nadia Binti Abdullah',      'nadia.abdullah@gmail.com', '7140123', 'Kg Beribi, Gadong',               'Apartment', 'No',  'I would love to give Snowy a safe and caring home.',                          'Pending'),
 (15, 'Ak Hj Ismail Bin Ak Ali',   'ismail.ali@gmail.com',     '8851234', 'Bangar, Temburong',               'House',     'Yes', 'Tiger deserves a peaceful home to spend his senior years.',                   'Approved');
-
--- test
