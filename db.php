@@ -51,3 +51,5 @@ function pet_image(?string $path): string {
 function status_class(string $status): string {
     return strtolower(preg_replace('/[^a-zA-Z]/', '', $status));
 }
+
+// test
