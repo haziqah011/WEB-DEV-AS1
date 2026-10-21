@@ -14,7 +14,7 @@ CREATE TABLE admins (
 );
 
 INSERT INTO admins (username, password_hash) VALUES
-('admin', 'admin123');
+('admin', '$2y$10$IONUKipbPt.xaHx1R9EDmOMRP4DyhP7OVsdYS5KTCJJoCdkGSQaJm');
 
 -- USER COMMENTS / REVIEWS ON A PET
 CREATE TABLE reviews (
