@@ -17,7 +17,7 @@ try {
 } catch (PDOException $ex) {
     error_log($ex->getMessage());
     http_response_code(500);
-    exit('DB error: ' . $ex->getMessage());
+    exit('Sorry, PawHome could not connect to the database. Please try again later.');
 }
 
 // Escape text before printing it in HTML
@@ -51,5 +51,3 @@ function pet_image(?string $path): string {
 function status_class(string $status): string {
     return strtolower(preg_replace('/[^a-zA-Z]/', '', $status));
 }
-
-// test
