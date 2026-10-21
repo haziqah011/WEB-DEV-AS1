@@ -3,7 +3,7 @@
 session_start();
 
 $dbHost = '127.0.0.1';
-$dbPort = '3307';
+$dbPort = '3306';
 $dbName = 'pet_adoption';
 $dbUser = 'root';
 $dbPass = '';
