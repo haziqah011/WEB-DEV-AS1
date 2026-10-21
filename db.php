@@ -17,7 +17,7 @@ try {
 } catch (PDOException $ex) {
     error_log($ex->getMessage());
     http_response_code(500);
-    exit('Sorry, PawHome could not connect to the database. Please try again later.');
+    exit('DB error: ' . $ex->getMessage());
 }
 
 // Escape text before printing it in HTML
