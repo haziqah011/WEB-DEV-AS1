@@ -1,7 +1,4 @@
 <?php
-// db.php - database connection + shared helper functions
-// Included by every page that needs the database.
-
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }

@@ -1,5 +1,5 @@
 <?php
-// admin_logout.php - ends the admin session
+//ends the admin session
 require_once "db.php";
 
 $_SESSION = [];

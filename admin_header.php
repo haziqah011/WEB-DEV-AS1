@@ -1,6 +1,4 @@
 <?php
-// admin_header.php - shared top part of admin pages
-// Set $pageTitle and $activePage before including.
 $pageTitle  = $pageTitle  ?? "Admin";
 $activePage = $activePage ?? "";
 ?>

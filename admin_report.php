@@ -1,5 +1,5 @@
 <?php
-// admin_report.php - simple adoption report generated from stored data
+//simple adoption report generated from stored data
 require_once "admin_auth.php";
 
 // 1. Pets by type and status

@@ -1,4 +1,4 @@
-// Quick checks in the browser. The server (form.php) validates everything again.
+// Quick checks in the browser. 
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form.adoption-form");
     if (!form) return;

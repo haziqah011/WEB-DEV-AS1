@@ -18,7 +18,7 @@ $breed  = in_array($_GET['breed'] ?? '', $breeds, true) ? $_GET['breed'] : '';
 $genders = ['Female', 'Male'];
 $gender  = in_array($_GET['gender'] ?? '', $genders, true) ? $_GET['gender'] : '';
 
-// Ages are stored as text such as "2 Years Old" or "8 Months Old"
+// Ages are stored as text 
 $ageGroups = [
     'baby'  => ["Baby (Under 1 Year Old)", "age LIKE '%Month%'"],
     'young' => ["Young (1–2 Years Old)",   "age REGEXP '^[12] Year'"],
@@ -26,7 +26,7 @@ $ageGroups = [
 ];
 $age = array_key_exists($_GET['age'] ?? '', $ageGroups) ? $_GET['age'] : '';
 
-/* ---------- 2. Build the query (values are always bound, never concatenated) ---------- */
+/* ---------- 2. Build the query  ---------- */
 $where = [];
 $args  = [];
 if ($q !== '')   { $where[] = '(name LIKE ? OR breed LIKE ? OR description LIKE ?)'; array_push($args, "%$q%", "%$q%", "%$q%"); }

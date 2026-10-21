@@ -1,5 +1,5 @@
 <?php
-// admin_applications.php - VIEW applications, UPDATE status, DELETE
+// VIEW applications, UPDATE status, DELETE
 require_once "admin_auth.php";
 
 $msg = "";

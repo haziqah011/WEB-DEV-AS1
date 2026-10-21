@@ -31,7 +31,6 @@ $featured = $pdo->query("SELECT id, name, breed, age, image FROM pets WHERE stat
 
 <main class="home-page">
 
-    <!-- HERO SECTION -->
     <section class="home-hero">
 
         <div class="hero-content">
@@ -52,8 +51,6 @@ $featured = $pdo->query("SELECT id, name, breed, age, image FROM pets WHERE stat
                 to welcome into your family.
             </p>
 
-            
-        <!-- HERO BUTTONS -->
         <div class="hero-buttons">
 
             <a href="pets.php" class="home-button">
@@ -79,7 +76,7 @@ $featured = $pdo->query("SELECT id, name, breed, age, image FROM pets WHERE stat
     </section>
 
 
-    <!-- FEATURED PETS -->
+    <!-- PETS -->
     <section class="home-featured">
 
         <h2>Meet our little friends.</h2>
@@ -104,7 +101,6 @@ $featured = $pdo->query("SELECT id, name, breed, age, image FROM pets WHERE stat
     </div>
 </div>
 
-
         <a href="pets.php" class="home-button">
             View All Pets →
         </a>
@@ -112,7 +108,7 @@ $featured = $pdo->query("SELECT id, name, breed, age, image FROM pets WHERE stat
     </section>
 
 
-    <!-- ADOPTION PROCESS -->
+    <!-- HOW IT WORKS -->
     <section class="home-process">
 
         <h2>How It Works</h2>

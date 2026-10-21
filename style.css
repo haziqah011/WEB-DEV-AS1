@@ -12,7 +12,7 @@
 }
 
 /* ===================================
-   GENERAL STYLING
+   GENERAL 
 =================================== */
 
 * {
@@ -92,8 +92,6 @@ nav a:hover {
     font-family: 'Fraunces', Georgia, serif;
 }
 
-/* HERO SECTION */
-
 .home-hero {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -157,7 +155,7 @@ nav a:hover {
     transform: translateY(-3px);
 }
 
-/* HERO IMAGE */
+/* IMAGE */
 
 .hero-image {
     position: relative;
@@ -211,7 +209,7 @@ nav a:hover {
 }
 
 /* ===================================
-   INFINITE PET CAROUSEL
+  CONTINUOUS PET SLIDER
 =================================== */
 
 .pet-carousel {
@@ -297,7 +295,7 @@ nav a:hover {
 }
 
 /* ===================================
-   ADOPTION PROCESS
+   HOW IT WORKS
 =================================== */
 
 .home-process {
@@ -359,8 +357,6 @@ nav a:hover {
     font-family: 'Fraunces', Georgia, serif;
 }
 
-/* ABOUT HERO */
-
 .about-hero {
     text-align: center;
     padding: 100px 20px;
@@ -381,7 +377,7 @@ nav a:hover {
     color: #555844;
 }
 
-/* WHO WE ARE - CENTERED */
+/* WHO WE ARE */
 
 .about-story {
     background-color: #fffdf9;
@@ -642,7 +638,7 @@ nav a:hover {
 }
 
 /* ===================================
-   PET DETAILS PAGE
+   PET-DETAILS PAGE
 =================================== */
 
 .details-section {
@@ -817,7 +813,7 @@ nav a:hover {
     background-color: var(--dark);
 }
 
-/* OPTIONAL EMBEDDED FORM */
+/* EMBEDDED FORM */
 
 .adoption-container {
     margin-top: 35px;
@@ -962,8 +958,6 @@ nav a:hover {
     background-color: var(--cream);
     font-family: 'DM Sans', sans-serif;
 }
-
-/* CONTACT HERO */
 
 .contact-hero {
     text-align: center;
@@ -1137,10 +1131,7 @@ nav a:hover {
     color: #555844;
 }
 
-/* FILTERS IN ONE ROW */
-
-
-/* FILTER OPTIONS - TWO COLUMNS */
+/* FILTER OPTIONS */
 
 .filter-options {
     display: grid;
@@ -1193,7 +1184,7 @@ nav a:hover {
 }
 
 
-/* BUTTONS BELOW FILTERS */
+/* BUTTONS */
 
 .filter-actions {
     display: flex;
@@ -1203,8 +1194,6 @@ nav a:hover {
     margin-top: 25px;
 }
 
-/* MOBILE */
-
 @media (max-width: 650px) {
     .filter-options {
         grid-template-columns: 1fr;
@@ -1212,7 +1201,7 @@ nav a:hover {
     }
 }
 
-/* BUTTONS BELOW FILTERS */
+/* BUTTONS */
 
 .filter-actions {
     display: flex;
@@ -1285,7 +1274,7 @@ nav a:hover {
 
 
 /* ===================================
-   USER PAGES: ADDITIONS (categories, search, status badges, form messages)
+   USER PAGES: ADDITIONS
 =================================== */
 
 /* Categories */

@@ -1,5 +1,5 @@
 <?php
-// Shared database connection + helpers. Include with: require 'db.php';
+// Shared database connection + helpers.//
 session_start();
 
 $dbHost = '127.0.0.1';
@@ -60,7 +60,7 @@ function pet_image(?string $path): string {
     return 'data:image/svg+xml;utf8,' . rawurlencode($svg);
 }
 
-// CSS-safe class for a status, e.g. "Available" -> "available"
+// Safe class for a status, e.g. "Available" -> "available"
 function status_class(string $status): string {
     return strtolower(preg_replace('/[^a-zA-Z]/', '', $status));
 }
