@@ -3,8 +3,8 @@
 // Creates the first administrator account.
 require_once "db.php";
 
-$username = "admin";
-$password = "admin123";      // change this before running if you want
+$username = "pluto";
+$password = "pluto1234";     // change this before running if you want
 
 $count = $pdo->query("SELECT COUNT(*) FROM admins")->fetchColumn();
 
