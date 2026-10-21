@@ -56,7 +56,7 @@
             </a>
 
             <a href="contact.php" class="home-button contact-button">
-                Contact Us
+                Contact Us ☎
             </a>
 
         </div>
