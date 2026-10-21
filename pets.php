@@ -165,9 +165,7 @@ function options(array $list, string $selected): string {
                 </div>
 
                 <h3><?= e($p['name']) ?></h3>
-                <p><?= e($p['type']) ?> • <?= e($p['age']) ?></p>
-                <p><?= e($p['breed']) ?> • <?= e($p['gender']) ?></p>
-                <p class="pet-blurb"><?= e(mb_strimwidth($p['description'], 0, 85, '…')) ?></p>
+                <p><?= e($p['breed']) ?> • <?= e($p['age']) ?></p>
 
                 <a href="pet_details.php?id=<?= (int)$p['id'] ?>" class="pet-btn">View Details</a>
             </div>
