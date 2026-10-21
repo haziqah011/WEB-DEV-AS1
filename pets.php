@@ -1,216 +1,182 @@
+<?php
+require 'db.php';
 
+/* ---------- 1. Read and validate the search / filter inputs ---------- */
+$q          = mb_substr(trim($_GET['q'] ?? ''), 0, 50);
+$onlyAvail  = isset($_GET['available']);
+
+// Categories (pet types) come from the database, so new types appear automatically
+$categories = $pdo->query("SELECT type, COUNT(*) AS total FROM pets GROUP BY type ORDER BY type")->fetchAll();
+$typeNames  = array_column($categories, 'type');
+$totalPets  = array_sum(array_column($categories, 'total'));
+
+$type = in_array($_GET['type'] ?? '', $typeNames, true) ? $_GET['type'] : '';
+
+$breeds = $pdo->query("SELECT DISTINCT breed FROM pets ORDER BY breed")->fetchAll(PDO::FETCH_COLUMN);
+$breed  = in_array($_GET['breed'] ?? '', $breeds, true) ? $_GET['breed'] : '';
+
+$genders = ['Female', 'Male'];
+$gender  = in_array($_GET['gender'] ?? '', $genders, true) ? $_GET['gender'] : '';
+
+// Ages are stored as text such as "2 Years Old" or "8 Months Old"
+$ageGroups = [
+    'baby'  => ["Baby (Under 1 Year Old)", "age LIKE '%Month%'"],
+    'young' => ["Young (1–2 Years Old)",   "age REGEXP '^[12] Year'"],
+    'adult' => ["Adult (3+ Years Old)",    "age REGEXP '^([3-9]|[1-9][0-9]+) Year'"],
+];
+$age = array_key_exists($_GET['age'] ?? '', $ageGroups) ? $_GET['age'] : '';
+
+/* ---------- 2. Build the query (values are always bound, never concatenated) ---------- */
+$where = [];
+$args  = [];
+if ($q !== '')   { $where[] = '(name LIKE ? OR breed LIKE ? OR description LIKE ?)'; array_push($args, "%$q%", "%$q%", "%$q%"); }
+if ($type)       { $where[] = 'type = ?';   $args[] = $type; }
+if ($breed)      { $where[] = 'breed = ?';  $args[] = $breed; }
+if ($gender)     { $where[] = 'gender = ?'; $args[] = $gender; }
+if ($age)        { $where[] = $ageGroups[$age][1]; }          // fixed strings from the list above
+if ($onlyAvail)  { $where[] = "status = 'Available'"; }
+
+$sql = 'SELECT id, name, type, breed, age, gender, description, image, status FROM pets'
+     . ($where ? ' WHERE ' . implode(' AND ', $where) : '')
+     . " ORDER BY (status = 'Available') DESC, name";
+$stmt = $pdo->prepare($sql);
+$stmt->execute($args);
+$pets = $stmt->fetchAll();
+
+function options(array $list, string $selected): string {
+    $html = '';
+    foreach ($list as $item) {
+        $html .= '<option value="' . e($item) . '"' . ($item === $selected ? ' selected' : '') . '>' . e($item) . '</option>';
+    }
+    return $html;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Adopt a Pet | PawHome</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- NAVIGATION BAR -->
-    <header>
-        <h1>PawHome 🐾</h1>
+<!-- NAVIGATION BAR -->
+<header>
+    <h1>PawHome 🐾</h1>
+    <nav>
+        <a href="index.php">Home</a>
+        <a href="pets.php" class="active" aria-current="page">Adopt a Pet</a>
+        <a href="about_us.php">About Us</a>
+        <a href="admin.php">Admin</a>
+    </nav>
+</header>
 
-        <nav>
-            <a href="index.php">Home</a>
-            <a href="pets.php" class="active">Adopt a Pet</a>
-            <a href="about_us.php">About Us</a>
-            <a href="admin.php">Admin</a>
-        </nav>
-    </header>
+<section class="pets-section">
 
+    <h2>Meet Our Lovely Pets!</h2>
+    <p>Every pet deserves a loving home. Find your perfect companion today!</p>
 
-    <!-- AVAILABLE PETS SECTION -->
-    <section class="pets-section">
+    <!-- PET CATEGORIES -->
+    <div class="category-chips" aria-label="Pet categories">
+        <a href="pets.php" class="<?= $type === '' ? 'active' : '' ?>">All pets (<?= (int)$totalPets ?>)</a>
+        <?php foreach ($categories as $c): ?>
+            <a href="pets.php?type=<?= urlencode($c['type']) ?>" class="<?= $type === $c['type'] ? 'active' : '' ?>">
+                <?= e($c['type']) ?>s (<?= (int)$c['total'] ?>)
+            </a>
+        <?php endforeach; ?>
+    </div>
 
-        <h2>Meet Our Lovely Pets!</h2>
+    <!-- SEARCH + FILTERS -->
+    <form class="filter-box" method="get" action="pets.php">
 
-        <p>
-            Every pet deserves a loving home.
-            Find your perfect companion today!
-        </p>
-
-
-        <!-- PET FILTER SECTION -->
-        <div class="filter-box">
-
-            <div class="filter-heading">
-
-                <span class="section-label">
-                    FIND YOUR PERFECT MATCH
-                </span>
-
-                <h3>Find your forever friend.</h3>
-
-            </div>
-
-
-            <!-- FILTER OPTIONS -->
-            <div class="filter-options">
-
-                <!-- PET TYPE -->
-                <div class="filter-group">
-
-                    <label for="typeFilter">Pet Type</label>
-
-                    <select id="typeFilter">
-                        <option value="all">Any pet</option>
-                        <option value="cat">Cat</option>
-                        <option value="dog">Dog</option>
-                    </select>
-
-                </div>
-
-
-                <!-- GENDER -->
-                <div class="filter-group">
-
-                    <label for="genderFilter">Gender</label>
-
-                    <select id="genderFilter">
-                        <option value="all">Any gender</option>
-                        <option value="female">Female</option>
-                        <option value="male">Male</option>
-                    </select>
-
-                </div>
-
-
-                
-                <!-- BREED -->
-                <div class="filter-group">
-
-                    <label for="breedFilter">Breed</label>
-
-                    <select id="breedFilter">
-                        <option value="all">Any breed</option>
-                        <option value="Domestic Shorthair">Domestic Shorthair</option>
-                        <option value="Labrador Retriever">Labrador Retriever</option>
-                    </select>
-
-                </div>
-
-
-                <!-- AGE -->
-                <div class="filter-group">
-
-                    <label for="ageFilter">Age</label>
-
-                    <select id="ageFilter">
-                        <option value="all">Any age</option>
-                        <option value="baby">
-                            Baby (Under 1 Year Old)
-                        </option>
-                        <option value="young">
-                            Young (1–2 Years Old)
-                        </option>
-                        <option value="adult">
-                            Adult (3+ Years Old)
-                        </option>
-                    </select>
-
-                </div>
-
-            </div>
-
-
-            <!-- FILTER BUTTONS -->
-            <div class="filter-actions">
-
-                <button type="button" id="clearFilters">
-                    Clear all
-                </button>
-
-                <button type="button" id="searchPets">
-                    Search Pets →
-                </button>
-
-            </div>
-
+        <div class="filter-heading">
+            <span class="section-label">FIND YOUR PERFECT MATCH</span>
+            <h3>Find your forever friend.</h3>
         </div>
 
+        <div class="filter-options">
 
-        <!-- NO RESULTS MESSAGE -->
-        <p id="noPetsMessage" hidden>
-            No pets match your selected filters.
-        </p>
-
-
-        <!-- PET CARDS -->
-        <div class="pets-container">
-
-            <!-- OREO -->
-            <div class="pet-card"
-                 data-type="cat"
-                 data-age="young"
-                 data-breed="Domestic Shorthair"
-                 data-gender="female">
-
-                <img src="petimages/Oreo.jpg" alt="Oreo">
-
-                <h3>Oreo</h3>
-
-                <p>Cat • 2 Years Old</p>
-
-                <a href="pet_details.php?id=1" class="pet-btn">
-                    View Details
-                </a>
-
+            <div class="filter-group filter-wide">
+                <label for="q">Search by name, breed or keyword</label>
+                <input type="search" id="q" name="q" value="<?= e($q) ?>" maxlength="50" placeholder="e.g. Oreo, Labrador, playful">
             </div>
 
-
-            <!-- MALLOW -->
-            <div class="pet-card"
-                 data-type="cat"
-                 data-age="young"
-                 data-breed="Domestic Shorthair"
-                 data-gender="female">
-
-                <img src="petimages/Mallow.jpg" alt="Mallow">
-
-                <h3>Mallow</h3>
-
-                <p>Cat • 1 Year Old</p>
-
-                <a href="pet_details.php?id=2" class="pet-btn">
-                    View Details
-                </a>
-
+            <div class="filter-group">
+                <label for="typeFilter">Pet Type</label>
+                <select id="typeFilter" name="type">
+                    <option value="">Any pet</option>
+                    <?= options($typeNames, $type) ?>
+                </select>
             </div>
 
-
-            <!-- MAX -->
-            <div class="pet-card"
-                 data-type="dog"
-                 data-age="adult"
-                 data-breed="Labrador Retriever"
-                 data-gender="male">
-
-                <img src="petimages/Max.jpg?v=2" alt="Max">
-
-                <h3>Max</h3>
-
-                <p>Dog • 3 Years Old</p>
-
-                <a href="pet_details.php?id=3" class="pet-btn">
-                    View Details
-                </a>
-
+            <div class="filter-group">
+                <label for="genderFilter">Gender</label>
+                <select id="genderFilter" name="gender">
+                    <option value="">Any gender</option>
+                    <?= options($genders, $gender) ?>
+                </select>
             </div>
 
+            <div class="filter-group">
+                <label for="breedFilter">Breed</label>
+                <select id="breedFilter" name="breed">
+                    <option value="">Any breed</option>
+                    <?= options($breeds, $breed) ?>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="ageFilter">Age</label>
+                <select id="ageFilter" name="age">
+                    <option value="">Any age</option>
+                    <?php foreach ($ageGroups as $key => [$label]): ?>
+                        <option value="<?= $key ?>" <?= $age === $key ? 'selected' : '' ?>><?= e($label) ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
+            <div class="filter-check">
+                <input type="checkbox" id="availableOnly" name="available" value="1" <?= $onlyAvail ? 'checked' : '' ?>>
+                <label for="availableOnly">Show only pets that are available</label>
+            </div>
         </div>
 
-    </section>
+        <div class="filter-actions">
+            <a href="pets.php" id="clearFilters">Clear all</a>
+            <button type="submit" id="searchPets">Search Pets →</button>
+        </div>
+    </form>
 
+    <p class="results-count" aria-live="polite">
+        <?= count($pets) ?> pet<?= count($pets) === 1 ? '' : 's' ?> found
+    </p>
 
-    <!-- PET FILTER JAVASCRIPT -->
-    <script src="pet_filter.js?v=3"></script>
+    <?php if (!$pets): ?>
+        <p id="noPetsMessage">No pets match your search. Try removing a filter or <a href="pets.php">clear all filters</a>.</p>
+    <?php else: ?>
+    <!-- PET LISTINGS -->
+    <div class="pets-container">
+        <?php foreach ($pets as $p): ?>
+            <div class="pet-card">
+                <div class="pet-image">
+                    <img src="<?= e(pet_image($p['image'])) ?>" alt="<?= e($p['name']) ?>, a <?= e(strtolower($p['type'])) ?>" loading="lazy">
+                    <span class="status-badge <?= e(status_class($p['status'])) ?>"><?= e($p['status']) ?></span>
+                </div>
 
+                <h3><?= e($p['name']) ?></h3>
+                <p><?= e($p['type']) ?> • <?= e($p['age']) ?></p>
+                <p><?= e($p['breed']) ?> • <?= e($p['gender']) ?></p>
+                <p class="pet-blurb"><?= e(mb_strimwidth($p['description'], 0, 85, '…')) ?></p>
+
+                <a href="pet_details.php?id=<?= (int)$p['id'] ?>" class="pet-btn">View Details</a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <?php endif; ?>
+
+</section>
+
+<script src="pet_filter.js?v=4"></script>
 </body>
 </html>
